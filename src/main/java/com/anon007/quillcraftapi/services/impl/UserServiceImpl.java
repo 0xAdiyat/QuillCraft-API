@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
         UserEntity user = dtoToUserEntity(userDTO);
         UserEntity savedUser = this.userRepo.save(user);
 
-
         return userEntityToDTO(savedUser);
     }
 
@@ -51,6 +50,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
         this.userRepo.delete(user);
+
     }
 
     @Override
