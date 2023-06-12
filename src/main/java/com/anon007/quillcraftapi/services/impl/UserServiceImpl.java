@@ -6,6 +6,7 @@ import com.anon007.quillcraftapi.payloads.UserDTO;
 import com.anon007.quillcraftapi.repositories.UserRepo;
 import com.anon007.quillcraftapi.services.UserService;
 import com.anon007.quillcraftapi.utils.conversation.ConversationUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.dtoToUserEntity;
 import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.userEntityToDTO;
 
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
 
