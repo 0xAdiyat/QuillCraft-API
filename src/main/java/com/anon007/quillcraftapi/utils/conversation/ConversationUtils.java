@@ -18,6 +18,7 @@ public class ConversationUtils {
 
     public static UserDTO userEntityToDTO(UserEntity userEntity) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(userEntity.getId());
         userDTO.setName(userEntity.getName());
         userDTO.setPassword(userEntity.getPassword());
         userDTO.setBio(userEntity.getBio());
