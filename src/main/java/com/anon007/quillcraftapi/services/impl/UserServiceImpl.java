@@ -25,38 +25,38 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO createUser(UserDTO userDTO) {
 
-        UserEntity userEntity = dtoToUserEntity(userDTO);
-        UserEntity savedUser = this.userRepo.save(userEntity);
+        UserEntity user = dtoToUserEntity(userDTO);
+        UserEntity savedUser = this.userRepo.save(user);
 
 
         return userEntityToDTO(savedUser);
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO, Long userId) {
+    public UserDTO updateUser(UserDTO userDTO, String userId) {
 
-        UserEntity userEntity = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
-        userEntity.setName(userDTO.getName());
-        userEntity.setBio(userDTO.getBio());
-        userEntity.setEmail(userDTO.getEmail());
-        userEntity.setPassword(userDTO.getPassword());
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        user.setName(userDTO.getName());
+        user.setBio(userDTO.getBio());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
 
-        UserEntity updatedUser = this.userRepo.save(userEntity);
+        UserEntity updatedUser = this.userRepo.save(user);
 
         return userEntityToDTO(updatedUser);
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    public void deleteUser(String userId) {
 
-        UserEntity userEntity = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
-        this.userRepo.delete(userEntity);
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        this.userRepo.delete(user);
     }
 
     @Override
-    public UserDTO getUserByID(Long userId) {
-        UserEntity userEntity = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
-        return userEntityToDTO(userEntity);
+    public UserDTO getUserByID(String userId) {
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        return userEntityToDTO(user);
     }
 
     @Override

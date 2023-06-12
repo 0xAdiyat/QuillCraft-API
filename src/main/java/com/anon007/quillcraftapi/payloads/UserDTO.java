@@ -3,7 +3,7 @@ package com.anon007.quillcraftapi.payloads;
 public class UserDTO {
     private Long id;
 
-    private String userUniqueId;
+
     private String name;
     private String email;
     private String password;
@@ -17,13 +17,6 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getUserUniqueId() {
-        return userUniqueId;
-    }
-
-    public void setUserUniqueId(String userUniqueId) {
-        this.userUniqueId = userUniqueId;
-    }
 
     public String getName() {
         return name;

@@ -6,10 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String userUniqueId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     @Column(name = "user_name", nullable = false, length = 50)
     private String name;
     @Column(nullable = false)
@@ -19,21 +17,14 @@ public class UserEntity {
     @Column(name = "user_bio", nullable = true)
     private String bio;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUserUniqueId() {
-        return userUniqueId;
-    }
-
-    public void setUserUniqueId(String userUniqueId) {
-        this.userUniqueId = userUniqueId;
-    }
 
     public String getName() {
         return name;
