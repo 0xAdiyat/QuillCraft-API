@@ -5,13 +5,13 @@ import com.anon007.quillcraftapi.payloads.UserDTO;
 import java.util.List;
 
 public interface UserService {
-    UserDTO createUser(UserDTO user);
+    UserDTO createUser(UserDTO userDTO);
 
-    UserDTO updateUser(UserDTO user, Integer userId);
+    UserDTO updateUser(UserDTO user, Long userUniqueId);
 
-    void deleteUser(Integer userId);
+    void deleteUser(Long userId);
 
-    UserDTO getUserByID(Integer userId);
+    UserDTO getUserByID(Long userId);
 
     List<UserDTO> getAllUsers();
 
