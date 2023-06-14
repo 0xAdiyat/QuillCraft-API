@@ -48,8 +48,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String userId) {
 
-        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        UserEntity user = this.userRepo.findByStringId(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
         this.userRepo.delete(user);
+
+//        this.userRepo.findById(userId).ifPresent(userRepo::delete);
 
     }
 
