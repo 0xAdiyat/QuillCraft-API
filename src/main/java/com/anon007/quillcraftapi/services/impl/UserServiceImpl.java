@@ -5,30 +5,29 @@ import com.anon007.quillcraftapi.exceptions.ResourceNotFoundException;
 import com.anon007.quillcraftapi.payloads.UserDTO;
 import com.anon007.quillcraftapi.repositories.UserRepo;
 import com.anon007.quillcraftapi.services.UserService;
-import com.anon007.quillcraftapi.utils.conversation.ConversationUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.dtoToUserEntity;
-import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.userEntityToDTO;
-
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
+    private final ModelMapper modelMapper;
 
-    UserServiceImpl(UserRepo userRepo) {
+    UserServiceImpl(UserRepo userRepo, ModelMapper modelMapper) {
         this.userRepo = userRepo;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
 
-        UserEntity user = dtoToUserEntity(userDTO);
+        UserEntity user = dtoToUserEntityMM(userDTO);
         UserEntity savedUser = this.userRepo.save(user);
 
-        return userEntityToDTO(savedUser);
+        return userEntityToDTOMM(savedUser);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity updatedUser = this.userRepo.save(user);
 
-        return userEntityToDTO(updatedUser);
+        return userEntityToDTOMM(updatedUser);
     }
 
     @Override
@@ -57,14 +56,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserByID(UUID userId) {
-        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-        return userEntityToDTO(user);
+        UserEntity user = this.userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        return userEntityToDTOMM(user);
     }
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return this.userRepo.findAll().stream().map(ConversationUtils::userEntityToDTO).toList();
+        return this.userRepo.findAll()
+                .stream()
+                .map(this::userEntityToDTOMM)
+                .toList();
     }
 
+    public UserEntity dtoToUserEntityMM(UserDTO userDTO) {
+
+
+        return modelMapper.map(userDTO, UserEntity.class);
+    }
+
+    public UserDTO userEntityToDTOMM(UserEntity userEntity) {
+
+        return modelMapper.map(userEntity, UserDTO.class);
+    }
 
 }

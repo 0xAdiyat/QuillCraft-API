@@ -6,6 +6,8 @@ import com.anon007.quillcraftapi.payloads.UserDTO;
 
 public class ConversationUtils {
 
+
+    // In case: of doing things(eg. model mapping) manually
     public static UserEntity dtoToUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
         userEntity.setId(UUIDUtils.generateUUID());
