@@ -3,6 +3,7 @@ package com.anon007.quillcraftapi.controllers;
 import com.anon007.quillcraftapi.payloads.APIResponse;
 import com.anon007.quillcraftapi.payloads.UserDTO;
 import com.anon007.quillcraftapi.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +22,13 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
         UserDTO createUserDTO = this.userService.createUser(userDTO);
         return new ResponseEntity<>(createUserDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO user, @PathVariable("userId") UUID user_id) {
+    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO user, @PathVariable("userId") UUID user_id) {
 
         UserDTO updateUserDTO = this.userService.updateUser(user, user_id);
 
