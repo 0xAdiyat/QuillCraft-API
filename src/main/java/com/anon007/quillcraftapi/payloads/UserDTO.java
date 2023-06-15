@@ -1,17 +1,19 @@
 package com.anon007.quillcraftapi.payloads;
 
+import java.util.UUID;
+
 public class UserDTO {
-    private String id;
+    private UUID id;
     private String name;
     private String email;
     private String password;
     private String bio;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -9,6 +9,7 @@ import com.anon007.quillcraftapi.utils.conversation.ConversationUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.dtoToUserEntity;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO, String userId) {
+    public UserDTO updateUser(UserDTO userDTO, UUID userId) {
 
         UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
         user.setName(userDTO.getName());
@@ -46,17 +47,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String userId) {
+    public void deleteUser(UUID userId) {
 
-        UserEntity user = this.userRepo.findByStringId(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
-        this.userRepo.delete(user);
+     /*   UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        this.userRepo.delete(user);*/
 
-//        this.userRepo.findById(userId).ifPresent(userRepo::delete);
+        this.userRepo.findById(userId).ifPresent(userRepo::delete);
 
     }
 
     @Override
-    public UserDTO getUserByID(String userId) {
+    public UserDTO getUserByID(UUID userId) {
         UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
         return userEntityToDTO(user);
     }

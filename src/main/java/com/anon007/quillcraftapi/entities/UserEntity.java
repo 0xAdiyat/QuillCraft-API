@@ -1,13 +1,18 @@
 package com.anon007.quillcraftapi.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
     @Column(name = "user_name", nullable = false, length = 50)
     private String name;
     @Column(nullable = false)
@@ -17,11 +22,11 @@ public class UserEntity {
     @Column(name = "user_bio", nullable = true)
     private String bio;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

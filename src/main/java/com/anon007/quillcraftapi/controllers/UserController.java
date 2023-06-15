@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -25,25 +29,35 @@ public class UserController {
 
     // Put update user
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO user, @PathVariable("userId") String user_id) {
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO user, @PathVariable("userId") UUID user_id) {
 
         UserDTO updateUserDTO = this.userService.updateUser(user, user_id);
 
-//        return new ResponseEntity<>(updateUserDTO, HttpStatus.ACCEPTED);
 
         return ResponseEntity.ok(updateUserDTO);
     }
 
-    // delete - delete user
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable UUID userId) {
         this.userService.deleteUser(userId);
 
-//        return new ResponseEntity(Map.of("message", "user deleted successfully"), HttpStatus.OK);
-        return new ResponseEntity(new APIResponse("User" + userId + "deleted successfully", true), HttpStatus.OK);
+
+        return new ResponseEntity<Map<String, Object>>(new APIResponse("User deleted successfully", true, 200).getResponseMap(), HttpStatus.OK);
 
     }
 
-    //get - user get
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable("userId") UUID userId) {
+        UserDTO userDTO = this.userService.getUserByID(userId);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> allUsers = this.userService.getAllUsers();
+
+        return new ResponseEntity<>(allUsers, HttpStatus.OK);
+    }
 
 }

@@ -8,6 +8,7 @@ public class ConversationUtils {
 
     public static UserEntity dtoToUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
+        userEntity.setId(UUIDUtils.generateUUID());
         userEntity.setName(userDTO.getName());
         userEntity.setEmail(userDTO.getEmail());
         userEntity.setPassword(userDTO.getPassword());
@@ -18,6 +19,7 @@ public class ConversationUtils {
 
     public static UserDTO userEntityToDTO(UserEntity userEntity) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(UUIDUtils.generateUUID());
         userDTO.setId(userEntity.getId());
         userDTO.setName(userEntity.getName());
         userDTO.setPassword(userEntity.getPassword());
@@ -26,4 +28,6 @@ public class ConversationUtils {
 
         return userDTO;
     }
+
+
 }
