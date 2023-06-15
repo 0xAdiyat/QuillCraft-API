@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -38,11 +37,11 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable UUID userId) {
+    public APIResponse deleteUser(@PathVariable UUID userId) {
         this.userService.deleteUser(userId);
 
 
-        return new ResponseEntity<Map<String, Object>>(new APIResponse("User deleted successfully", true, 200).getResponseMap(), HttpStatus.OK);
+        return new APIResponse("User deleted successfully", true, 200);
 
     }
 
@@ -56,7 +55,6 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<UserDTO> allUsers = this.userService.getAllUsers();
-
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
