@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.dtoToUserEntity;
 import static com.anon007.quillcraftapi.utils.conversation.ConversationUtils.userEntityToDTO;
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(UserDTO userDTO, UUID userId) {
 
-        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
         user.setName(userDTO.getName());
         user.setBio(userDTO.getBio());
         user.setEmail(userDTO.getEmail());
@@ -49,22 +48,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(UUID userId) {
 
-     /*   UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
-        this.userRepo.delete(user);*/
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        this.userRepo.delete(user);
 
-        this.userRepo.findById(userId).ifPresent(userRepo::delete);
+//        this.userRepo.findById(userId).ifPresent(userRepo::delete);
 
     }
 
     @Override
     public UserDTO getUserByID(UUID userId) {
-        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " id ", userId));
+        UserEntity user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
         return userEntityToDTO(user);
     }
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return this.userRepo.findAll().stream().map(ConversationUtils::userEntityToDTO).collect(Collectors.toList());
+        return this.userRepo.findAll().stream().map(ConversationUtils::userEntityToDTO).toList();
     }
 
 

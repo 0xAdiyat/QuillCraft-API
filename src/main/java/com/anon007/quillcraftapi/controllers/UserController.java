@@ -41,7 +41,7 @@ public class UserController {
         this.userService.deleteUser(userId);
 
 
-        return new APIResponse("User deleted successfully", true, 200);
+        return new APIResponse("User deleted successfully", true, HttpStatus.OK.value());
 
     }
 

@@ -6,7 +6,8 @@ public class APIResponse {
 
     private boolean isSuccess;
 
-    private int status;
+    private int
+            status;
 
     public APIResponse() {
 
