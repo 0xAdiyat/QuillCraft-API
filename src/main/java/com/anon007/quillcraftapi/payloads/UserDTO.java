@@ -1,12 +1,19 @@
 package com.anon007.quillcraftapi.payloads;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.UUID;
 
 public class UserDTO {
     private UUID id;
+    @NotNull
     private String name;
+    @Email
     private String email;
+    @NotNull
     private String password;
+    @NotNull
     private String bio;
 
     public UUID getId() {
