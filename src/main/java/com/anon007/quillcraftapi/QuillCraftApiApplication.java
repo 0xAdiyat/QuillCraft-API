@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class QuillCraftApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(QuillCraftApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(QuillCraftApiApplication.class, args);
+    }
+
+    // STEPS: Entity -> DTO -> Repository -> Service
 
 }
