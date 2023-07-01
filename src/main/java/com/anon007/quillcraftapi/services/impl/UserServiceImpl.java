@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO userDTO) {
 
         UserEntity user = dtoToUserEntityMM(userDTO);
-        UserEntity savedUser = this.userRepo.save(user);
+        UserEntity createdUser = this.userRepo.save(user);
 
-        return userEntityToDTOMM(savedUser);
+        return userEntityToDTOMM(createdUser);
     }
 
     @Override
@@ -69,13 +69,13 @@ public class UserServiceImpl implements UserService {
                 .toList();
     }
 
-    public UserEntity dtoToUserEntityMM(UserDTO userDTO) {
+    private UserEntity dtoToUserEntityMM(UserDTO userDTO) {
 
 
         return modelMapper.map(userDTO, UserEntity.class);
     }
 
-    public UserDTO userEntityToDTOMM(UserEntity userEntity) {
+    private UserDTO userEntityToDTOMM(UserEntity userEntity) {
 
         return modelMapper.map(userEntity, UserDTO.class);
     }

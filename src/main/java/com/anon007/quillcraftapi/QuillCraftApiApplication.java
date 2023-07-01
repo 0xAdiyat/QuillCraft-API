@@ -10,6 +10,10 @@ public class QuillCraftApiApplication {
         SpringApplication.run(QuillCraftApiApplication.class, args);
     }
 
-    // STEPS: Entity -> DTO -> Repository -> Service
+    /*
+     * STEPS: Entity -> DTO -> Repository -> Service -> ServiceImplement
+     *                                                      --Create DTO to Entity ModelMapper
+     *                                                      --Create Entity to DTO ModelMapper
+     */
 
 }
