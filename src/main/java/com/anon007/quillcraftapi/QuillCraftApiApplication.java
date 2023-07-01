@@ -11,9 +11,14 @@ public class QuillCraftApiApplication {
     }
 
     /*
-     * STEPS: Entity -> DTO -> Repository -> Service -> ServiceImplement
-     *                                                      --Create DTO to Entity ModelMapper
-     *                                                      --Create Entity to DTO ModelMapper
+     * === STEPS ===
+     * Entity -> DTO -> Repository -> Service -> ServiceImplement
+     *                                                      -- @Service
+     *                                                          -- Create DTO to Entity ModelMapper
+     *                                                          -- Create Entity to DTO ModelMapper
+     *                                                                  -> Controller
+     *                                                                      -- @RestController
+     *                                                                      -- @RequestMapping("/api/v1/")
      */
 
 }

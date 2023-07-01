@@ -6,9 +6,11 @@ import com.anon007.quillcraftapi.payloads.CategoryDTO;
 import com.anon007.quillcraftapi.repositories.CategoryRepo;
 import com.anon007.quillcraftapi.services.CategoryService;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
     private final ModelMapper modelMapper;
