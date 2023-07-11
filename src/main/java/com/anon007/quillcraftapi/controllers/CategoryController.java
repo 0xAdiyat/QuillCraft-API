@@ -20,7 +20,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping
+    @PostMapping("/")
     public APIResponse createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         CategoryDTO category = this.categoryService.createCategory(categoryDTO);
         return new APIResponse("Category created", true, HttpStatus.CREATED.value());
