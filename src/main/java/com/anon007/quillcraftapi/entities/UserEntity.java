@@ -22,6 +22,7 @@ public class UserEntity {
     @Column(name = "user_bio", nullable = true)
     private String bio;
 
+    // One user can have multiple posts
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PostEntity> posts = new ArrayList<>();
 

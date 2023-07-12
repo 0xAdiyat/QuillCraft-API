@@ -13,7 +13,7 @@ public class QuillCraftApiApplication {
     /*
      * === STEPS ===
      * Entity -> DTO -> Repository -> Service -> ServiceImplement
-     *                                                      -- @Service
+     *           -- Add validation                              -- @Service
      *                                                          -- Create DTO to Entity ModelMapper
      *                                                          -- Create Entity to DTO ModelMapper
      *                                                                  -> Controller
