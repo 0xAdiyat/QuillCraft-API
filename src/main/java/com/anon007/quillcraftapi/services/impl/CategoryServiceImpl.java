@@ -46,7 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDTO getCategoryById(Integer categoryId) {
         CategoryEntity category = this.categoryRepo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId));
-
         return categoryEntityToDTOMM(category);
     }
 

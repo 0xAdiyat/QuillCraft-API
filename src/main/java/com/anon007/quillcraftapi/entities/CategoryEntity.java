@@ -18,6 +18,7 @@ public class CategoryEntity {
     @Column(name = "description")
     private String categoryDescription;
 
+    // One category can have multiple posts assigned to it
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PostEntity> posts = new ArrayList<>();
 

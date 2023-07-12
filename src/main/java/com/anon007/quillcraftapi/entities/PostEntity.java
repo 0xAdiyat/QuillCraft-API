@@ -4,31 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "post")
-public class PostEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer postId;
-    @Column(name = "post_title", length = 100, nullable = false)
-    private String title;
-
-    @Column(name = "post_content", length = 10000)
-    private String content;
-    private String imageName;
-    private Date addedDate;
-
-    @ManyToOne
-    private UserEntity user;
-    @ManyToOne
-    private CategoryEntity category;
-
-
-}
 
 /*
-*
 *
 * Explanations:
 * Consider a real-life scenario of a blogging platform where users can create posts and categorize them into different categories. Here's how the `ManyToOne` and `OneToMany` relationships between the `UserEntity`, `CategoryEntity`, and `PostEntity` can be explained:
@@ -56,3 +33,95 @@ This setup enables the platform to organize posts into different categories and 
 *
 *
 * */
+
+@Entity
+@Table(name = "post")
+public class PostEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer postId;
+    @Column(name = "post_title", length = 100, nullable = false)
+    private String title;
+
+    @Column(name = "post_content", length = 10000)
+    private String content;
+    private String imageName;
+    private Date addedDate;
+
+    @ManyToOne
+    private UserEntity user;
+    @ManyToOne
+    @JoinColumn(name = "categoryId", nullable = false)
+    private CategoryEntity category;
+
+    public PostEntity(Integer postId, String title, String content, String imageName, Date addedDate, UserEntity user, CategoryEntity category) {
+        this.postId = postId;
+        this.title = title;
+        this.content = content;
+        this.imageName = imageName;
+        this.addedDate = addedDate;
+        this.user = user;
+        this.category = category;
+    }
+
+    public PostEntity() {
+
+    }
+
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+}
