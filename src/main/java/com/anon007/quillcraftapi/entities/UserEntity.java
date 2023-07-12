@@ -2,6 +2,8 @@ package com.anon007.quillcraftapi.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +21,9 @@ public class UserEntity {
     private String password;
     @Column(name = "user_bio", nullable = true)
     private String bio;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PostEntity> posts = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -60,4 +65,6 @@ public class UserEntity {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+
 }
