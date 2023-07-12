@@ -2,6 +2,9 @@ package com.anon007.quillcraftapi.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 public class CategoryEntity {
@@ -14,6 +17,9 @@ public class CategoryEntity {
     private String categoryTitle;
     @Column(name = "description")
     private String categoryDescription;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PostEntity> posts = new ArrayList<>();
 
     public CategoryEntity() {
     }
