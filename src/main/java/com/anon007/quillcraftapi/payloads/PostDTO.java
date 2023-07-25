@@ -8,37 +8,25 @@ import java.util.Date;
 
 public class PostDTO {
 
-    private Integer postId;
     @NotEmpty(message = "Post title cannot be empty")
     private String title;
 
     private String content;
-    private String imageName;
+    private String imageName = "default.png";
     private Date addedDate;
 
-    private UserEntity user;
-    private CategoryEntity category;
 
     public PostDTO() {
     }
 
-    public PostDTO(Integer postId, String title, String content, String imageName, Date addedDate, UserEntity user, CategoryEntity category) {
-        this.postId = postId;
+    public PostDTO(String title, String content, String imageName, Date addedDate, UserEntity user, CategoryEntity category) {
         this.title = title;
         this.content = content;
         this.imageName = imageName;
         this.addedDate = addedDate;
-        this.user = user;
-        this.category = category;
+
     }
 
-    public Integer getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
 
     public String getTitle() {
         return title;
@@ -72,19 +60,5 @@ public class PostDTO {
         this.addedDate = addedDate;
     }
 
-    public UserEntity getUser() {
-        return user;
-    }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public CategoryEntity getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
 }
